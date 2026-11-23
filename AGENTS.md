@@ -33,8 +33,8 @@ it**, and only that repo's agent changes it. Readers say, in their own repo, whi
 | Contract | Lives in | Written by | Read by | Version today |
 |---|---|---|---|---|
 | Admin export formats (`sotalore-recipes-*.json`, `-item-catalog.json`, `-scene-finds.json`, `-game-skills.json`) | `sladmin/EXPORT-FORMAT.md` | sladmin | app, companion | `pluginVersion` only |
-| Skills formats (the paged base-36 code a player pastes, and `sotalore-skills.json`) | `slskills/EXPORT-FORMAT.md` (to be split out of the shared file) | slskills | app | `pluginVersion` only |
-| The site API (`/api/v1/...`) | `sotalore/docs/api.md` (doesn't exist yet) | app | companion | `v1` in the path |
+| Skills formats (the paged base-36 code a player pastes, and `sotalore-skills.json`) | `slskills/EXPORT-FORMAT.md` | slskills | app | `pluginVersion` only |
+| The site API (`/api/v1/...`), including uploads of the admin exports | `sotalore/docs/api.md` | app | companion | `v1` in the path |
 
 Example files for each export go in the app as spec fixtures (`spec/fixtures/plugin-examples/`), copied from
 the plugin repo when a format changes.
@@ -58,8 +58,9 @@ the plugin repo when a format changes.
   plan.
 - **Repo agents** work in their own repo, on issues in that repo. They message other agents only along
   contract edges (below) and never start agents themselves; if a job needs another agent, they tell the lead.
-- **Darren** keeps what only he can do: testing in game, merging PRs, deploying to Heroku, and deciding what
-  gets built. Ask him only for those; route everything else through issues and the lead.
+- **Darren** keeps what only he can do: testing in game, merging PRs, and deciding what gets built. A merge to
+  the app's `main` deploys it to Heroku through GitHub Actions, so merging is deploying. Ask him only for
+  those; route everything else through issues and the lead.
 
 ## Tracking work
 
@@ -69,9 +70,10 @@ the plugin repo when a format changes.
   repos doing the steps (GitHub allows sub-issues across repos in one org). The lead keeps its checklist
   current; it's where Darren looks to see where things stand.
 - **One org-level GitHub Project**, [SotA Lore](https://github.com/orgs/sotalore/projects/1), shows every repo's
-  work. New issues in `sotalore/sotalore` are added automatically; in every other repo, add each new issue to it (`gh project item-add 1 --owner sotalore --url <issue url>`) and keep its Status
-  current: **Todo**, **Doing** (in progress, or an active plan), **Waiting on Darren** (an in-game test, a merge, a
-  deploy or a decision), **Done**. Waiting on Darren is the list Darren works from, so move an item there when it
+  work. New issues in `sotalore/sotalore` are added automatically; in every other repo, add each new issue to it
+  (`gh project item-add 1 --owner sotalore --url <issue url>`). Keep each item's Status current: **Todo**,
+  **Doing** (in progress, or an active plan), **Waiting on Darren** (an in-game test, a merge or a decision),
+  **Done**. Waiting on Darren is the list Darren works from, so move an item there when it
   stops on him, and back when he's answered.
 - **Labels:** `bug`, `enhancement` and `tracking` in every repo. Which repo an issue is in says whose side it
   is, so the old `app` and `plugin` labels go away after the split.
@@ -108,7 +110,7 @@ Agents talk with `hc send <machine>/<agent> "..."`. Messages are signals, not th
    `Reply: <agent> when <condition>` (for example `Reply: sladmin when the PR is open`), or
    `Reply: Darren` (for his part only). Don't send acknowledgements, thanks or "on it"; silence means received.
 5. **Darren's part goes to Darren, not round in circles.** When a step needs in-game testing, a merge or a
-   deploy, say so in the issue, tell the lead, and stop on that step. The lead collects these and asks Darren
+   decision, say so in the issue, tell the lead, and stop on that step. The lead collects these and asks Darren
    once.
 
 Example:
