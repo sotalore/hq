@@ -68,7 +68,11 @@ the plugin repo when a format changes.
 - **A cross-repo plan gets a tracking issue in `sotalore/hq`**, labelled `tracking`, with sub-issues in the
   repos doing the steps (GitHub allows sub-issues across repos in one org). The lead keeps its checklist
   current; it's where Darren looks to see where things stand.
-- **One org-level GitHub Project** shows every repo's open work. Add new issues to it.
+- **One org-level GitHub Project**, [SotA Lore](https://github.com/orgs/sotalore/projects/1), shows every repo's
+  work. New issues in `sotalore/sotalore` are added automatically; in every other repo, add each new issue to it (`gh project item-add 1 --owner sotalore --url <issue url>`) and keep its Status
+  current: **Todo**, **Doing** (in progress, or an active plan), **Waiting on Darren** (an in-game test, a merge, a
+  deploy or a decision), **Done**. Waiting on Darren is the list Darren works from, so move an item there when it
+  stops on him, and back when he's answered.
 - **Labels:** `bug`, `enhancement` and `tracking` in every repo. Which repo an issue is in says whose side it
   is, so the old `app` and `plugin` labels go away after the split.
 - **PRs say `Closes <repo>#N`** for the issue they finish. When a step of a plan lands, tick it on the

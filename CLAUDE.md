@@ -13,6 +13,10 @@ This repo holds no code. The agent working here is `hq`, the lead for SotA Lore 
   checklists current, links each step's PR when it lands.
 - Starts and steers the repo agents (`hc run ...`, see "Starting agents" in `AGENTS.md`), and is the one
   they message when blocked.
+- Sweeps the board before each report to Darren. The Project's one auto-add workflow (the free plan allows one)
+  covers only `sotalore/sotalore`, so add any open issue in `hq`, `sladmin`, `slskills` (and later `companion`)
+  that's missing from it:
+  `gh project item-list 1 --owner sotalore --limit 500 --format json -q '.items[].content.url'` lists what's on it.
 - Reports to Darren, and gathers what only he can do (in-game tests, merges, deploys, choices) into one ask
   instead of many.
 - Doesn't change other repos' files. Work there goes to that repo's agent through an issue, except while
