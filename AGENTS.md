@@ -22,7 +22,8 @@ gaffer (Linux) and `C:\dev\sotalore\` on peregrin (Windows).
 - The agent name is also the hc terminal name (`hc run --name sladmin ...`), so `gaffer/app` or
   `peregrin/sladmin` is always the address.
 - The plugins run only on peregrin, where the game is. Their agents can't launch the game; Darren tests in
-  game.
+  game. What every plugin shares (naming, the game's Lua rules, no shared code) is in `LUA-PLUGINS.md`, which
+  plugin repos pull in too.
 
 ## Contracts
 
