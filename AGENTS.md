@@ -14,7 +14,7 @@ gaffer (Linux) and `C:\dev\sotalore\` on peregrin (Windows).
 | `sotalore/sotalore` | the Rails app at sotalore.com (Heroku) | gaffer | `app` |
 | `sotalore/sladmin` | `sl-admin`, the in-game Lua plugin for site admins: recipe, item, finds and game-skill exports | peregrin | `sladmin` |
 | `sotalore/slskills` | `sl-skills`, the in-game Lua plugin for players: their trained skills, as a code and a file | peregrin | `slskills` |
-| `sotalore/companion` | a native desktop app, not started; assumed to read the plugins' export files and upload them through the API | not decided | `companion` |
+| `sotalore/companion` | a Windows desktop app (Tauri: Rust core, web UI) beside the game: uploads exports, checks skills, files screenshots and spoken notes by scene; roadmap in hq#3 | peregrin | `companion` |
 | `sotalore/hq` | this repo: coordination only, no code | gaffer | `hq` |
 
 - **An agent changes only its own repo.** If a fix belongs in another repo, open an issue there (see
@@ -32,7 +32,7 @@ it**, and only that repo's agent changes it. Readers say, in their own repo, whi
 
 | Contract | Lives in | Written by | Read by | Version today |
 |---|---|---|---|---|
-| Admin export formats (`sotalore-recipes-*.json`, `-item-catalog.json`, `-scene-finds.json`, `-game-skills.json`) | `sladmin/EXPORT-FORMAT.md` | sladmin | app, companion | `pluginVersion` only |
+| Admin export formats (`sotalore-recipes-*.json`, `-item-catalog.json`, `-scene-finds.json`, `-game-skills.json`, and the current-scene file the companion reads) | `sladmin/EXPORT-FORMAT.md` | sladmin | app, companion | `pluginVersion` only |
 | Skills formats (the paged base-36 code a player pastes, and `sotalore-skills.json`) | `slskills/EXPORT-FORMAT.md` | slskills | app | `pluginVersion` only |
 | The site API (`/api/v1/...`), including uploads of the admin exports | `sotalore/docs/api.md` | app | companion | `v1` in the path |
 
@@ -99,6 +99,7 @@ Agents talk with `hc send <machine>/<agent> "..."`. Messages are signals, not th
    | slskills | app | skills formats |
    | app | companion | the API |
    | companion | app | the API, upload problems |
+   | companion | sladmin | export files, the current-scene file |
    | readers | writers | requests, bugs in a contract |
    | anyone | hq | blocked, needs another agent, needs Darren |
    | hq | anyone | the lead starting or steering work |
