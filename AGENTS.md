@@ -61,6 +61,10 @@ the plugin repo when a format changes.
 - **Darren** keeps what only he can do: testing in game, merging PRs, and deciding what gets built. A merge to
   the app's `main` deploys it to Heroku through GitHub Actions, so merging is deploying. Ask him only for
   those; route everything else through issues and the lead.
+- **One piece of work in progress per repo.** Finish a step, get Darren's test or review, and ship it
+  (committed and pushed, or the PR merged) before starting the next step in that repo. Don't build a new step
+  on top of uncommitted work. If something new comes up mid-step, open an issue for it and leave it for later.
+  The lead starts a repo's next step only once the last one has shipped.
 
 ## Tracking work
 
